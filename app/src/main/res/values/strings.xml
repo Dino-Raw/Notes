@@ -1,0 +1,8 @@
+<resources>
+	<string name="app_name">Notes</string>
+	<string name="description_create_note_btn">Create note</string>
+	<string name="pinned_notes_name">Pinned notes</string>
+	<string name="notes_name">Notes</string>
+	<string name="title">Title</string>
+	<string name="description">Description</string>
+</resources>
