@@ -12,7 +12,8 @@
 		android:label="HomeFragment" >
 		<action
 			android:id="@+id/action_homeFragment_to_noteFragment"
-			app:destination="@id/noteFragment" />
+			app:destination="@id/noteFragment"
+			app:popUpTo="@id/homeFragment"/>
 	</fragment>
 	<fragment
 		android:id="@+id/noteFragment"

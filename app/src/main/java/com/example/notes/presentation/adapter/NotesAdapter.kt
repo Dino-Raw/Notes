@@ -7,8 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.NoteDomain
 import com.example.notes.databinding.RowNoteBinding
 import com.example.notes.presentation.viewholder.NotesViewHolder
+import javax.inject.Inject
 
-class NotesAdapter: RecyclerView.Adapter<NotesViewHolder>() {
+class NotesAdapter @Inject constructor(): RecyclerView.Adapter<NotesViewHolder>() {
     private var listNotes = ArrayList<NoteDomain>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -28,5 +29,7 @@ class NotesAdapter: RecyclerView.Adapter<NotesViewHolder>() {
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.bind(listNotes[position])
+
+
     }
 }

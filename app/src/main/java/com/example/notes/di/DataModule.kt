@@ -20,6 +20,7 @@ class DataModule {
         ).build()
     }
 
+    @Singleton
     @Provides
     fun provideNoteDao(dataBase: NoteDataBase): NoteDao {
         return dataBase.noteDao

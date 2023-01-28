@@ -12,6 +12,8 @@ data class NoteData (
     val title: String,
     @ColumnInfo(name = "description")
     val description: String,
+    @ColumnInfo(name = "pinned")
+    val pinned: Boolean = false,
     @ColumnInfo(name = "color")
     val color: Int,
-)
+): java.io.Serializable

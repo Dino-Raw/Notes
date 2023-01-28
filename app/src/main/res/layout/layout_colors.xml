@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+ <data>
+	 <import type="android.view.View"/>
+	 <import type="androidx.core.content.ContextCompat"/>
+	 <import type="com.example.notes.R" />
+
+	 <variable
+		 name="viewModel"
+		 type="com.example.notes.presentation.viewmodel.NoteViewModel" />
+ </data>
+
+	<LinearLayout
+		android:animated_visibility="@{viewModel.colorsLayoutVisibility}"
+		android:id="@+id/color_layout"
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+
+		<View
+			android:layout_width="wrap_content"
+			android:layout_height="0.3dp"
+			android:background="@color/dark_gray">
+		</View>
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:gravity="center"
+			android:text="Colors">
+		</TextView>
+
+		<HorizontalScrollView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+
+			<LinearLayout
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="20dp"
+				android:orientation="horizontal">
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_0)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_0"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_0 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_1)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_1"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_1 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_2)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_2"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_2 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_3)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_3"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_3 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_4)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_4"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_4 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_5)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_5"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_5 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_6)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_6"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_6 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_7)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_7"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_7 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_8)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_8"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_8 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_9)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_9"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_9 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+
+				<FrameLayout
+					android:onClick="@{() -> viewModel.setColor(R.color.note_background_10)}"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content">
+
+					<View
+						android:layout_width="48dp"
+						android:layout_height="48dp"
+						android:layout_gravity="center"
+						android:backgroundTint="@color/note_background_10"
+						android:background="@drawable/row_color">
+					</View>
+
+					<ImageView
+						android:layout_width="58dp"
+						android:layout_height="58dp"
+						android:layout_gravity="center"
+						android:src="@drawable/ic_select"
+						android:visibility="@{viewModel.note.color == R.color.note_background_10 ? View.VISIBLE : View.INVISIBLE}">
+					</ImageView>
+
+				</FrameLayout>
+			</LinearLayout>
+		</HorizontalScrollView>
+	</LinearLayout>
+</layout>

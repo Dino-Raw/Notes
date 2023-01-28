@@ -1,10 +1,6 @@
 package com.example.notes.presentation.viewmodel
 
-import android.annotation.SuppressLint
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.domain.model.NoteDomain
 import com.example.domain.usecase.DeleteNoteUseCase
 import com.example.domain.usecase.GetNotesUseCase
@@ -16,30 +12,26 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getNotesUseCase: GetNotesUseCase,
     private val deleteNoteUseCase: DeleteNoteUseCase,
+    val notesAdapter: NotesAdapter,
+    val notesPinnedAdapter: NotesAdapter,
+
 ): ViewModel() {
-    private val _listNotes: MutableLiveData<MutableList<NoteDomain>> = MutableLiveData()
-    val listNote: LiveData<MutableList<NoteDomain>> = _listNotes
-    val notesAdapter = NotesAdapter()
+    val notes =
+        getNotesUseCase.execute().asLiveData(viewModelScope.coroutineContext)
+    val notesPinned =
+        getNotesUseCase.execute(pinned = true).asLiveData(viewModelScope.coroutineContext)
 
-    init {
-        getNotes()
+    fun setNotesAdapter() {
+        notesAdapter.setData(notes.value as ArrayList<NoteDomain>)
     }
 
-    fun setAdapter() {
-        notesAdapter.setData(_listNotes.value as ArrayList<NoteDomain>)
+    fun setNotesPinnedAdapter() {
+        notesPinnedAdapter.setData(notesPinned.value as ArrayList<NoteDomain>)
     }
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun getNotes() {
+    fun deleteNote(note: NoteDomain) {
         viewModelScope.launch(Dispatchers.IO) {
-            val notes = mutableListOf<NoteDomain>()
-            notes.addAll(getNotesUseCase.execute())
-            if (notes.isNotEmpty())
-                _listNotes.postValue(notes)
+            deleteNoteUseCase.execute(note)
         }
-    }
-
-    fun deleteNote() {
-
     }
 }

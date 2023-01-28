@@ -1,41 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
 	<data>
+		<import type="androidx.core.content.ContextCompat"/>
+		<import type="com.example.notes.R"/>
 		<variable
 			name="title"
 			type="String" />
 		<variable
 			name="description"
 			type="String" />
+		<variable
+			name="color"
+			type="Integer" />
 	</data>
 
-	<androidx.cardview.widget.CardView
-		xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/noteCard"
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content">
+		android:layout_height="wrap_content"
+		android:elevation="0dp"
+		android:orientation="vertical">
 
-		<RelativeLayout
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/noteCard"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="wrap_content"
+			android:layout_margin="5dp"
+			android:elevation="0dp"
+			app:cardBackgroundColor="@{ContextCompat.getColorStateList(context, color)}"
+			app:cardCornerRadius="10dp"
+			app:contentPadding="12dp"
+			app:strokeWidth="1.5dp"
+			app:strokeColor="@{color == R.color.note_background_0 ? @color/gray : ContextCompat.getColor(context, color)}">
 
-			<TextView
-				android:id="@+id/titleTxt"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:text="@{title}">
-			</TextView>
+			<RelativeLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent">
 
-			<TextView
-				android:id="@+id/descriptionTxt"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_below="@id/titleTxt"
-				android:layout_marginTop="10dp"
-				android:text="@{description}">
-			</TextView>
-		</RelativeLayout>
+				<TextView
+					android:id="@+id/titleTxt"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:maxLines="1"
+					android:textSize="18sp"
+					android:textColor="@color/black"
+					android:text="@{title}">
+				</TextView>
 
-	</androidx.cardview.widget.CardView>
+				<TextView
+					android:id="@+id/descriptionTxt"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:maxLines="7"
+					android:layout_below="@id/titleTxt"
+					android:layout_marginTop="5dp"
+					android:textSize="15sp"
+					android:text="@{description}">
+				</TextView>
+			</RelativeLayout>
+
+		</com.google.android.material.card.MaterialCardView>
+
+	</LinearLayout>
 </layout>
