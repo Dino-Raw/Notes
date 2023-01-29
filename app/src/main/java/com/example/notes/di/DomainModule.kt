@@ -34,6 +34,6 @@ class DomainModule {
         title = "",
         description = "",
         pinned = false,
-        color = R.color.white,
+        color = R.color.note_background_0,
     )
 }

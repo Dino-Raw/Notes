@@ -14,15 +14,25 @@ class HomeViewModel @Inject constructor(
     private val deleteNoteUseCase: DeleteNoteUseCase,
     val notesAdapter: NotesAdapter,
     val notesPinnedAdapter: NotesAdapter,
-
 ): ViewModel() {
     val notes =
         getNotesUseCase.execute().asLiveData(viewModelScope.coroutineContext)
     val notesPinned =
         getNotesUseCase.execute(pinned = true).asLiveData(viewModelScope.coroutineContext)
 
-    fun setNotesAdapter() {
-        notesAdapter.setData(notes.value as ArrayList<NoteDomain>)
+    val visibilityAfterScrolling: MutableLiveData<Boolean> = MutableLiveData(true)
+
+    init {
+        filterNotes()
+    }
+
+    fun filterNotes(text: String? = "") {
+        notesAdapter.filter.filter(text)
+        notesPinnedAdapter.filter.filter(text)
+    }
+
+    fun setNotesAdapter(note: List<NoteDomain>? = notes.value) {
+        notesAdapter.setData(note as ArrayList<NoteDomain>)
     }
 
     fun setNotesPinnedAdapter() {
