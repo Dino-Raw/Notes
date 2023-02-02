@@ -3,7 +3,6 @@ package com.example.notes.presentation.fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnScrollChangeListener
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.core.view.doOnLayout
@@ -18,11 +17,13 @@ import com.example.notes.presentation.activity.MainActivity
 import com.example.notes.presentation.viewmodel.HomeViewModel
 import javax.inject.Inject
 
-class HomeFragment: Fragment(R.layout.fragment_home) {
+
+class HomeFragment : Fragment(R.layout.fragment_home) {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private var oldYDelta = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,21 +49,26 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
         binding.lifecycleOwner = viewLifecycleOwner
         initButton()
         initSearchView()
-        //initNestedScrollListener()
+        initNestedScrollListener()
         observers()
 
-        view.doOnLayout  { startPostponedEnterTransition() }
+        view.doOnLayout { startPostponedEnterTransition() }
     }
 
     private fun initNestedScrollListener() {
-        binding.notesScrollView.setOnScrollChangeListener { v, _, scrollY, _, oldScrollY ->
-            if (scrollY > oldScrollY + 12)
-                binding.searchNote.visibility = View.GONE
-                // viewModel.visibilityAfterScrolling.value = false
-            if (scrollY < oldScrollY - 12)
-                binding.searchNote.visibility = View.VISIBLE
-                //viewModel.visibilityAfterScrolling.value = true
+        binding.notesScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
 
+            val yDelta = scrollY - oldScrollY
+
+            if (yDelta > 0 && oldYDelta <= 0) {
+                binding.searchNote.goneWithAnimation(R.anim.slide_top_up_anim)
+                binding.createNoteBtn.goneWithAnimation(R.anim.slide_bottom_down_anim)
+            } else if (yDelta < 0 && oldYDelta >= 0) {
+                binding.searchNote.visibleWithAnimation(R.anim.slide_top_down_anim)
+                binding.createNoteBtn.visibleWithAnimation(R.anim.slide_bottom_up_anim)
+            }
+
+            oldYDelta = yDelta
         }
     }
 
@@ -84,12 +90,12 @@ class HomeFragment: Fragment(R.layout.fragment_home) {
     }
 
     private fun observers() {
-        viewModel.notes.observe(viewLifecycleOwner) { notes ->
-                viewModel.setNotesAdapter()
+        viewModel.notes.observe(viewLifecycleOwner) {
+            viewModel.setNotesAdapter()
         }
 
-        viewModel.notesPinned.observe(viewLifecycleOwner) { notes ->
-                viewModel.setNotesPinnedAdapter()
+        viewModel.notesPinned.observe(viewLifecycleOwner) {
+            viewModel.setNotesPinnedAdapter()
         }
     }
 }

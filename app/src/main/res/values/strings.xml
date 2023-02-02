@@ -5,4 +5,8 @@
 	<string name="notes_name">Notes</string>
 	<string name="title">Title</string>
 	<string name="description">Description</string>
+	<string name="colors">Colors</string>
+	<string name="back">Back</string>
+	<string name="notes">Notes</string>
+	<string name="pinned_notes">Pinned Notes</string>
 </resources>

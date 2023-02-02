@@ -11,6 +11,7 @@
 	android:layout_height="match_parent">
 
 	<fragment
+		android:padding="30dp"
 		android:id="@+id/navigation_fragment"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"

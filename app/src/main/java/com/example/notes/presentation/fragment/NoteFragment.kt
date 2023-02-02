@@ -18,7 +18,7 @@ import com.example.notes.presentation.viewmodel.NoteViewModel
 import com.google.android.material.transition.MaterialContainerTransform
 import javax.inject.Inject
 
-class NoteFragment: Fragment(R.layout.fragment_note) {
+class NoteFragment : Fragment(R.layout.fragment_note) {
     @Inject lateinit var viewModelFactory: ViewModelFactory
     lateinit var viewModel: NoteViewModel
     private var _binding: FragmentNoteBinding? = null
@@ -34,7 +34,7 @@ class NoteFragment: Fragment(R.layout.fragment_note) {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentNoteBinding.inflate(inflater)
         return binding.root
@@ -45,8 +45,18 @@ class NoteFragment: Fragment(R.layout.fragment_note) {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         initButton()
+        observers()
         sharedElementEnterTransition = MaterialContainerTransform()
         ViewCompat.setTransitionName(binding.root, viewModel.note.value?.id?.toString())
+    }
+
+    private fun observers() {
+        viewModel.colorsLayoutVisibility.observe(viewLifecycleOwner) { visibility ->
+            if (visibility)
+                binding.includeColor.colorLayout.visibleWithAnimation(R.anim.slide_bottom_up_anim)
+            else
+                binding.includeColor.colorLayout.goneWithAnimation(R.anim.slide_bottom_down_anim)
+        }
     }
 
     private fun initButton() {

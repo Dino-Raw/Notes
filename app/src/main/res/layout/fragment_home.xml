@@ -10,38 +10,20 @@
 			type="com.example.notes.presentation.viewmodel.HomeViewModel" />
 	</data>
 
-	<androidx.constraintlayout.widget.ConstraintLayout
+	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-
-		<SearchView
-			android:id="@+id/search_note"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:queryHint="Search notes"
-			android:iconifiedByDefault="false"
-			android:animated_visibility="@{viewModel.visibilityAfterScrolling}"
-			android:background="@drawable/search_view_background"
-			android:queryBackground="@null"
-			android:textCursorDrawable="@null"
-			app:layout_constraintTop_toTopOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintEnd_toEndOf="parent">
-		</SearchView>
+		android:layout_height="match_parent"
+		android:orientation="vertical">
 
 		<androidx.core.widget.NestedScrollView
+			android:paddingTop="30dp"
 			android:id="@+id/notes_scroll_view"
+			android:paddingHorizontal="16dp"
 			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_marginHorizontal="10dp"
-			android:layout_marginTop="10dp"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			app:layout_constraintStart_toStartOf="parent"
-			app:layout_constraintTop_toBottomOf="@id/search_note">
+			android:layout_height="match_parent">
 
 			<RelativeLayout
+				android:paddingTop="50dp"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content">
 
@@ -56,7 +38,7 @@
 						android:layout_marginStart="5dp"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Pinned Notes">
+						android:text="@string/pinned_notes">
 					</TextView>
 
 					<androidx.recyclerview.widget.RecyclerView
@@ -86,7 +68,7 @@
 						android:layout_marginStart="5dp"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Notes">
+						android:text="@string/notes">
 					</TextView>
 
 					<androidx.recyclerview.widget.RecyclerView
@@ -107,18 +89,32 @@
 			</RelativeLayout>
 		</androidx.core.widget.NestedScrollView>
 
+		<FrameLayout
+			android:layout_marginTop="30dp"
+			android:id="@+id/frame_search"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
 
-		<com.google.android.material.floatingactionbutton.FloatingActionButton
-			android:id="@+id/create_note_btn"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_margin="10dp"
-			android:src="@drawable/ic_plus"
-			android:animated_visibility="@{viewModel.visibilityAfterScrolling}"
-			app:layout_constraintBottom_toBottomOf="parent"
-			app:layout_constraintEnd_toEndOf="parent"
-			android:contentDescription="@string/description_create_note_btn">
-		</com.google.android.material.floatingactionbutton.FloatingActionButton>
+			<SearchView
+				android:id="@+id/search_note"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:queryHint="Search notes"
+				android:layout_gravity="top"
+				android:iconifiedByDefault="false"
+				android:background="@color/note_background_0"
+				android:queryBackground="@null">
+			</SearchView>
 
-	</androidx.constraintlayout.widget.ConstraintLayout>
+			<com.google.android.material.floatingactionbutton.FloatingActionButton
+				android:id="@+id/create_note_btn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="10dp"
+				android:layout_gravity="bottom|end"
+				android:src="@drawable/ic_plus"
+				android:contentDescription="@string/description_create_note_btn">
+			</com.google.android.material.floatingactionbutton.FloatingActionButton>
+		</FrameLayout>
+	</FrameLayout>
 </layout>

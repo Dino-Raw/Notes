@@ -1,15 +1,9 @@
 package com.example.notes.presentation.viewmodel
 
-import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.transition.Slide
-import androidx.transition.Transition
-import androidx.transition.TransitionManager
 import com.example.domain.model.NoteDomain
 import com.example.domain.usecase.DeleteNoteUseCase
 import com.example.domain.usecase.InsertNoteUseCase
@@ -23,8 +17,8 @@ class NoteViewModel @Inject constructor(
     private val deleteNoteUseCase: DeleteNoteUseCase,
     private val insertNoteUseCase: InsertNoteUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
-    noteDomain: NoteDomain
-): ViewModel() {
+    noteDomain: NoteDomain,
+) : ViewModel() {
     private val _note: MutableLiveData<NoteDomain> = MutableLiveData(noteDomain)
     val note: LiveData<NoteDomain> = _note
 
@@ -53,7 +47,7 @@ class NoteViewModel @Inject constructor(
     }
 
     fun clearNote() {
-        _note.mutate {
+        _note.value?.apply {
             title = ""
             description = ""
         }

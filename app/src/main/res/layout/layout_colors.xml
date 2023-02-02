@@ -12,7 +12,6 @@
  </data>
 
 	<LinearLayout
-		android:animated_visibility="@{viewModel.colorsLayoutVisibility}"
 		android:id="@+id/color_layout"
 		android:background="@{ContextCompat.getColor(context, viewModel.note.color)}"
 		android:orientation="vertical"
@@ -30,7 +29,7 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
 			android:gravity="center"
-			android:text="Colors">
+			android:text="@string/colors">
 		</TextView>
 
 		<HorizontalScrollView
