@@ -7,6 +7,6 @@ interface Repository {
     fun getNotPinnedNotes(): Flow<List<NoteDomain>>
     fun getPinnedNotes(): Flow<List<NoteDomain>>
     suspend fun insertNote(note: NoteDomain)
-    suspend fun updateNote(note: NoteDomain)
-    suspend fun deleteNote(note: NoteDomain)
+    suspend fun updateNote(vararg note: NoteDomain)
+    suspend fun deleteNote(vararg note: NoteDomain)
 }

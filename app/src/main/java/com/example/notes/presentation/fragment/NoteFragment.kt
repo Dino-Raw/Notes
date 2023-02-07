@@ -52,10 +52,10 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
 
     private fun observers() {
         viewModel.colorsLayoutVisibility.observe(viewLifecycleOwner) { visibility ->
-            if (visibility)
+            if (visibility && binding.includeColor.colorLayout.visibility != View.VISIBLE)
                 binding.includeColor.colorLayout.visibleWithAnimation(R.anim.slide_bottom_up_anim)
-            else
-                binding.includeColor.colorLayout.goneWithAnimation(R.anim.slide_bottom_down_anim)
+            else if (!visibility && binding.includeColor.colorLayout.visibility != View.INVISIBLE)
+                binding.includeColor.colorLayout.invisibleWithAnimation(R.anim.slide_bottom_down_anim)
         }
     }
 

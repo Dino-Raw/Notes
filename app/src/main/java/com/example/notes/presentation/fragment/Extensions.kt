@@ -20,12 +20,12 @@ fun View.visibleWithAnimation(anim: Int) {
     this@visibleWithAnimation.startAnimation(animation)
 }
 
-fun View.goneWithAnimation(anim: Int) {
+fun View.invisibleWithAnimation(anim: Int) {
     val animation: Animation =
-        AnimationUtils.loadAnimation(this@goneWithAnimation.context, anim)
+        AnimationUtils.loadAnimation(this@invisibleWithAnimation.context, anim)
     animation.setAnimationListener(object : Animation.AnimationListener {
         override fun onAnimationStart(animation: Animation) {
-            this@goneWithAnimation.visibility = View.GONE
+            this@invisibleWithAnimation.visibility = View.INVISIBLE
         }
 
         override fun onAnimationEnd(animation: Animation) {
@@ -34,5 +34,5 @@ fun View.goneWithAnimation(anim: Int) {
         override fun onAnimationRepeat(animation: Animation) {
         }
     })
-    this@goneWithAnimation.startAnimation(animation)
+    this@invisibleWithAnimation.startAnimation(animation)
 }

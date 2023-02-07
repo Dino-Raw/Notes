@@ -6,7 +6,7 @@ import com.example.domain.repository.Repository
 class UpdateNoteUseCase(
     private val repository: Repository
 ) {
-    suspend fun execute(note: NoteDomain) {
+    suspend fun execute(vararg note: NoteDomain) {
         repository.updateNote(note = note)
     }
 }

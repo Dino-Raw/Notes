@@ -10,10 +10,10 @@ interface NoteDao {
     suspend fun insert(noteData: NoteData)
 
     @Update
-    suspend fun update(noteData: NoteData)
+    suspend fun update(vararg noteData: NoteData)
 
     @Delete
-    suspend fun delete(noteData: NoteData)
+    suspend fun delete(vararg noteData: NoteData)
 
     @Query("SELECT * FROM Note WHERE pinned = 0")
     fun getAllNotPinned(): Flow<List<NoteData>>

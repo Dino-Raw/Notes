@@ -25,11 +25,11 @@ class RepositoryImpl @Inject constructor(
         noteDao.insert(note.toData())
     }
 
-    override suspend fun updateNote(note: NoteDomain) {
-        noteDao.update(note.toData())
+    override suspend fun updateNote(vararg note: NoteDomain) {
+        noteDao.update(*note.toData())
     }
 
-    override suspend fun deleteNote(note: NoteDomain) {
-        noteDao.delete(note.toData())
+    override suspend fun deleteNote(vararg note: NoteDomain) {
+        noteDao.delete(*note.toData())
     }
 }

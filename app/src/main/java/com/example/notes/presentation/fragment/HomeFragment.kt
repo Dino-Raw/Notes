@@ -61,8 +61,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val yDelta = scrollY - oldScrollY
 
             if (yDelta > 0 && oldYDelta <= 0) {
-                binding.searchNote.goneWithAnimation(R.anim.slide_top_up_anim)
-                binding.createNoteBtn.goneWithAnimation(R.anim.slide_bottom_down_anim)
+                binding.searchNote.invisibleWithAnimation(R.anim.slide_top_up_anim)
+                binding.createNoteBtn.invisibleWithAnimation(R.anim.slide_bottom_down_anim)
             } else if (yDelta < 0 && oldYDelta >= 0) {
                 binding.searchNote.visibleWithAnimation(R.anim.slide_top_down_anim)
                 binding.createNoteBtn.visibleWithAnimation(R.anim.slide_bottom_up_anim)
@@ -96,6 +96,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.notesPinned.observe(viewLifecycleOwner) {
             viewModel.setNotesPinnedAdapter()
+        }
+
+        viewModel.isToolbarVisibly.observe(viewLifecycleOwner) { visibility ->
+            if (visibility && binding.toolbar.visibility != View.VISIBLE)
+                binding.toolbar.visibleWithAnimation(R.anim.slide_top_down_anim)
+            else if (!visibility && binding.toolbar.visibility != View.INVISIBLE)
+                binding.toolbar.invisibleWithAnimation(R.anim.slide_top_up_anim)
         }
     }
 }

@@ -14,8 +14,11 @@ import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 class NotesAdapter @Inject constructor(): RecyclerView.Adapter<NotesViewHolder>(), Filterable {
+    lateinit var multiSelectGet: () -> Boolean
+    lateinit var multiSelectSet: () -> Unit
     private var listNotes = ArrayList<NoteDomain>()
     private var filterListNotes = ArrayList<NoteDomain>()
+    var selectListNotes = ArrayList<NoteDomain>()
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(listNotes: ArrayList<NoteDomain>) {
@@ -34,6 +37,47 @@ class NotesAdapter @Inject constructor(): RecyclerView.Adapter<NotesViewHolder>(
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
         holder.bind(filterListNotes[position])
+
+        if (selectListNotes.contains(filterListNotes[position])) {
+            holder.itemView.alpha = 0.3f
+        } else {
+            holder.itemView.alpha = 1.0f
+        }
+
+        holder.itemView.setOnClickListener {
+            if (multiSelectGet.invoke()) {
+                selectItem(holder, filterListNotes[position])
+            } else {
+                holder.setOnClick(filterListNotes[position])
+            }
+        }
+
+        holder.itemView.setOnLongClickListener {
+            if (!multiSelectGet.invoke()) {
+                selectItem(holder, filterListNotes[position])
+                true
+            }
+            else {
+                false
+            }
+        }
+    }
+
+    private fun selectItem(holder: NotesViewHolder, note: NoteDomain) {
+        if (selectListNotes.contains(note)) {
+            selectListNotes.remove(note)
+            holder.itemView.alpha = 1.0f
+        } else {
+            selectListNotes.add(note)
+            holder.itemView.alpha = 0.3f
+        }
+        multiSelectSet.invoke()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clearSelectedItem() {
+        selectListNotes.clear()
+        notifyDataSetChanged()
     }
 
     override fun getFilter(): Filter {
