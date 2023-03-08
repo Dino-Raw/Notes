@@ -27,8 +27,9 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ((activity as MainActivity).applicationContext as App).appComponent.inject(this)
-        viewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java]
-        arguments?.let { viewModel.setNote(it.getSerializable("note") as NoteDomain) }
+        viewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java].apply {
+            setNote(arguments?.getSerializable("note") as NoteDomain)
+        }
     }
 
     override fun onCreateView(
