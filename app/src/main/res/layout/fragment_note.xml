@@ -13,7 +13,7 @@
 		android:fitsSystemWindows="true"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@{ContextCompat.getColor(context, viewModel.note.color)}"
+		app:gradient="@{viewModel.note.color}"
 		tools:context="com.example.notes.presentation.fragment.NoteFragment">
 
 		<androidx.appcompat.widget.Toolbar
@@ -111,7 +111,6 @@
 			app:layout_constraintStart_toStartOf="parent"
 			app:layout_constraintEnd_toEndOf="parent">
 		</EditText>
-
 
 		<include
 			android:fitsSystemWindows="true"

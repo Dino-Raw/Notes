@@ -39,6 +39,7 @@ class NoteViewModel @Inject constructor(
     }
 
     fun setColor(newColor: Int) {
+        println(newColor)
         _note.mutate { color = newColor }
     }
 

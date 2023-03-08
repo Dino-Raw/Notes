@@ -28,7 +28,8 @@ class NoteFragment : Fragment(R.layout.fragment_note) {
         super.onCreate(savedInstanceState)
         ((activity as MainActivity).applicationContext as App).appComponent.inject(this)
         viewModel = ViewModelProvider(this, viewModelFactory)[NoteViewModel::class.java].apply {
-            setNote(arguments?.getSerializable("note") as NoteDomain)
+            val note = arguments?.getSerializable("note") as NoteDomain?
+            if (note != null) setNote(note)
         }
     }
 

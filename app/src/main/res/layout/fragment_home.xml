@@ -102,7 +102,7 @@
 				android:queryHint="Search notes"
 				android:layout_gravity="top"
 				android:iconifiedByDefault="false"
-				android:background="@color/note_background_0"
+				android:background="@color/white"
 				android:queryBackground="@null">
 			</SearchView>
 
@@ -112,7 +112,7 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="top"
 				android:visibility="invisible"
-				android:background="@color/note_background_0">
+				android:background="@color/white">
 
 				<RelativeLayout
 					android:layout_width="match_parent"

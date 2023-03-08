@@ -9,19 +9,26 @@
 	<color name="white">#FFFFFFFF</color>
 	<color name="gray">#ecedf1</color>
 	<color name="dark_gray">#606163</color>
-
 	<color name="text_dark_gray">#444444</color>
-	
-	<color name="note_background_0">#FFFFFFFF</color>
-	<color name="note_background_1">#ffadad</color>
-	<color name="note_background_2">#ffd6a5</color>
-	<color name="note_background_3">#fdffb6</color>
-	<color name="note_background_4">#caffbf</color>
-	<color name="note_background_5">#9bf6ff</color>
-	<color name="note_background_6">#a0c4ff</color>
-	<color name="note_background_7">#bdb2ff</color>
-	<color name="note_background_8">#ffc6ff</color>
-	<color name="note_background_9">#e9edc9</color>
-	<color name="note_background_10">#faedcd</color>
 
+	<color name="roseanna_start">#ffafbd</color>
+	<color name="roseanna_end">#ffc3a0</color>
+
+	<color name="blue_start">#0ccda3</color>
+	<color name="blue_end">#c1fcd3</color>
+
+	<color name="summer_dog_start">#a8ff78</color>
+	<color name="summer_dog_end">#78ffd6</color>
+
+	<color name="snapchat_start">#fffc00</color>
+	<color name="snapchat_end">#fffea7</color>
+
+	<color name="vice_city_start">#88c7fe</color>
+	<color name="vice_city_end">#ffb2d9</color>
+
+	<color name="piggy_pink_start">#ee9ca7</color>
+	<color name="piggy_pink_end">#ffdde1</color>
+
+	<color name="maldives_start">#b2fefa</color>
+	<color name="maldives_end">#0ed2f7</color>
 </resources>
